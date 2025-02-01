@@ -14,4 +14,12 @@ build/
 
 # Environment variables
 .env
+.env.local
+
+# Cloudflare Functions
+functions/_*
+functions/*.map
+
+# Environment files
+.env
 .env.local 
