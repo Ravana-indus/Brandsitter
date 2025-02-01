@@ -514,7 +514,7 @@
             const isDevelopment = window.location.hostname === '127.0.0.1';
             const apiUrl = isDevelopment 
                 ? 'http://localhost:3000/proxy'
-                : 'https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept';
+                : '/proxy';
 
             const formData = {
                 web_form: "Brandsitter-ca",
@@ -550,13 +550,20 @@
                 });
 
                 if (response.ok) {
-                    window.location.href = '/success.html';
+                    window.location.href = '/success.html?' + new URLSearchParams({
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET'
+                    });
                 } else {
                     const errorText = await response.text();
                     throw new Error(`Submission failed: ${response.status} - ${errorText}`);
                 }
             } catch (error) {
-                alert(`Submission failed: ${error.message}`);
+                console.error('Submission Error:', error);
+                showErrorAlert();
+                if (typeof cloudflare !== 'undefined') {
+                    cloudflare.analytics.track('FormSubmissionError', { error: error.message });
+                }
             }
         }
 
