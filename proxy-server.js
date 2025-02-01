@@ -3,10 +3,11 @@ const cors = require('cors');
 const fetch = require('node-fetch').default;
 const app = express();
 
-// Update CORS configuration to include development domains
+// Update CORS configuration
 app.use(cors({
     origin: [
-        'https://brandsitter.pages.dev', 
+        'https://brandsitter.pages.dev',
+        'https://603a0d37.brandsitter.pages.dev', // Added preview deployment
         'https://brandsitter.ca', 
         'http://localhost:3000',
         'http://127.0.0.1:5500',  // Added Live Server domain
