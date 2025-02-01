@@ -29,6 +29,13 @@ app.post('/proxy', async (req, res) => {
             body: JSON.stringify(req.body)
         });
         
+        // Forward CORS headers from Frappe response
+        res.set({
+            'Access-Control-Allow-Origin': req.headers.origin || '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        });
+
         const data = await response.json();
         res.status(response.status).json(data);
     } catch (error) {
