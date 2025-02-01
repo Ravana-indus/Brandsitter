@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandSitter.ca | Professional Brand Management & Marketing Services Toronto and Canada</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <meta name="description" content="Toronto's premier brand management agency offering complete marketing solutions, website development, and business strategy consulting. Get your brand noticed with our expert team!">
+    <meta name="keywords" content="brand management, Toronto marketing agency, website development, business strategy, digital marketing Canada">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="BrandSitter.ca | Professional Brand Management Toronto">
+    <meta property="og:description" content="Toronto's premier brand management agency offering complete marketing solutions and business strategy consulting">
+    <meta property="og:image" content="https://brandsitter.ca/img/og-image.jpg">
+    <meta property="og:url" content="https://brandsitter.ca/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BrandSitter.ca | Professional Brand Management Toronto">
+    <meta name="twitter:description" content="Toronto's premier brand management agency offering complete marketing solutions">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "BrandSitter.ca",
+        "image": "https://brandsitter.ca/img/logo.jpg",
+        "priceRange": "$$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Toronto",
+            "addressRegion": "ON",
+            "postalCode": "M5V 3L9",
+            "streetAddress": "123 Brand St"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 43.6532,
+            "longitude": -79.3832
+        },
+        "telephone": "+1-416-555-1234"
+    }
+    </script>
+    <style>
+        :root {
+            --navy: #0a0b2e;
+            --primary: #6366f1;
+            --accent: #f59e0b;
+        }
+        
+        body {
+            background-color: var(--navy);
+            color: white;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .enterprise-card {
+            background: linear-gradient(145deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .enterprise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #f59e0b, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            transition: 0.5s ease;
+        }
+
+        .gradient-text:hover {
+            background-position: right center;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .hero-badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #818cf8;
+        }
+
+        .hero-section {
+            background: linear-gradient(165deg, var(--navy) 60%, rgba(99, 102, 241, 0.1));
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #818cf8;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1, #818cf8);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .credentials-badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            display: inline-block;
+            color: #818cf8;
+            transition: all 0.3s ease;
+        }
+
+        .team-card {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .review-card {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .easter-egg {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 2rem;
+        }
+
+        .easter-egg:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 11, 46, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--navy);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            max-width: 90%;
+            width: 600px;
+        }
+
+        .enterprise-card {
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .enterprise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .enterprise-card:hover .gradient-text {
+            background-size: 200% 100%;
+            background-position: right center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #f59e0b, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 100% 100%;
+            background-position: left center;
+            transition: background-position 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-opacity-90 backdrop-filter backdrop-blur-lg z-50" style="background: rgba(10, 11, 46, 0.9);">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2" aria-label="Home">
+                <img src="/img/Web Logo.png" alt="BrandSitter Logo" class="h-12">
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuButton" class="md:hidden text-indigo-300 p-2 rounded-lg hover:bg-indigo-900/20">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#team" class="nav-link">Chaos Crew</a>
+                <a href="pages/wizard.html" 
+                   class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                          flex items-center gap-2">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg md:hidden hidden">
+            <div class="container mx-auto px-6 py-4 space-y-4">
+                <a href="#services" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Services</a>
+                <a href="#team" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Chaos Crew</a>
+                <a href="pages/wizard.html" 
+                   class="block bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-colors text-center">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-16 md:mb-0">
+                    <div class="hero-badge mb-8">Because Even Brands Need a Babysitter!</div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-8">
+                        <span class="gradient-text">Your brand is crying in the corner<br>
+                        eating lukewarm biriyani leftovers.</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-12 text-gray-400">Let's get it Michelin-starred. 🍛→⭐</p>
+                    <div class="flex gap-6">
+                        <a href="pages/wizard.html" 
+                           class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                                  text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                                  flex items-center gap-2">
+                            Start Brand Rescue Now →
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0">
+                    <div class="enterprise-card p-2 w-4/5 mx-auto">
+                        <img src="img/Main Logo.png" 
+                             alt="Platform Preview" 
+                             class="rounded-lg w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- About Section -->
+<section id="about" class="py-32 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-500/5 to-transparent"></div>
+    <div class="container mx-auto px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <!-- Intro -->
+            <div class="text-center mb-16">
+                <div class="hero-badge inline-block mb-6">Your Brand Sitter™</div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    Hey, I'm 
+                    <span class="gradient-text">Pathurjan</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    I'm here to save your business from <em>"meh"</em> branding, dusty websites, and strategies 
+                    <span class="gradient-text">as stale as last week's noodles in the fridge.</span>
+                </p>
+
+                <!-- Add the new image component here -->
+                <div class="relative max-w-2xl mx-auto mb-16 group">
+                    <!-- Floating image with tilt effect -->
+                    <div class="enterprise-card p-4 w-64 h-64 mx-auto transform rotate-3 hover:rotate-6 transition-transform duration-500">
+                        <img src="/img/Ceo.jpg" 
+                             alt="Pathurjan - Brand Whisperer" 
+                             class="w-full h-full object-cover rounded-lg shadow-2xl"
+                             title="Caught mid-'Aiyyo!' moment">
+                    </div>
+                    
+                    <!-- Sticky note effect -->
+                    <div class="absolute -bottom-8 -right-8 bg-yellow-100 p-4 rounded-lg shadow-lg w-48 transform -rotate-6 text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-sm font-bold mb-2">⚠️ Warning:</div>
+                        <p class="text-xs">May spontaneously combust if exposed to boring branding</p>
+                        <div class="absolute top-2 right-2 text-lg">🔥</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credentials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Viral Engineer Card -->
+                <div class="enterprise-card p-8 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-2xl">
+                                🎬
+                            </div>
+                            <h3 class="text-2xl font-bold">Film Student Turned<br/>
+                                <span class="gradient-text">Viral Engineer</span>
+                            </h3>
+                        </div>
+                        <p class="text-gray-400">(Yes, that's a real job)</p>
+                    </div>
+                </div>
+
+                <!-- 6 Businesses Card -->
+                <div class="enterprise-card p-8 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-2xl">
+                                💼
+                            </div>
+                            <h3 class="text-2xl font-bold">Built<br/>
+                                <span class="gradient-text">6 Businesses</span>
+                            </h3>
+                        </div>
+                        <p class="text-gray-400">So you don't have to fail 5 times first</p>
+                    </div>
+                </div>
+
+                <!-- Brand Wizard Card -->
+                <div class="enterprise-card p-8 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-2xl">
+                                🧙‍♂️
+                            </div>
+                            <h3 class="text-2xl font-bold">Miami Ad School Trained<br/>
+                                <span class="gradient-text">Brand Wizard</span>
+                            </h3>
+                        </div>
+                        <p class="text-gray-400">Trained in the dark arts of brand magic by the industry's best</p>
+                    </div>
+                </div>
+
+                <!-- Canadian Tamil Card -->
+                <div class="enterprise-card p-8 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                    <div class="relative">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-2xl">
+                                🍁
+                            </div>
+                            <h3 class="text-2xl font-bold">Proudly<br/>
+                                <span class="gradient-text">Tamil</span>
+                            </h3>
+                        </div>
+                        <p class="text-gray-400">Globally Lit Memes, Locally Sourced Dreams</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center">
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <a href="pages/wizard.html" 
+                       class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                              text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                              flex items-center gap-2 hover:gap-3">
+                        🚀 Transform Your Brand →
+                    </a>
+                    <a href="#team" class="border border-indigo-500 px-8 py-4 rounded-full text-indigo-500 hover:bg-indigo-500 hover:text-white transition text-lg">
+                        Meet the Chaos Crew →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-opacity-5 bg-indigo-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center">
+                <span class="gradient-text">We're Basically the "Aiyyo Fix-It" Crew</span><br>
+                for Your Brand
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="text-xl font-bold mb-4">Brand Strategy</h3>
+                    <p class="text-gray-400">Because "vibes" don't pay the bills. Let's make your brand slap harder than a "Maththalam".</p>
+                </div>
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="text-xl font-bold mb-4">Websites</h3>
+                    <p class="text-gray-400">No more "Under Construction" BS. We build sites that convert like Samahan cures colds.</p>
+                </div>
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="text-xl font-bold mb-4">Digital Marketing</h3>
+                    <p class="text-gray-400">Go viral or go home. We engineer campaigns that trend faster than relative aunty's gossip.</p>
+                </div>
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="text-xl font-bold mb-4">Apps & Tech</h3>
+                    <p class="text-gray-400">Apps people actually use, not just download for free stickers.</p>
+                </div>
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="text-xl font-bold mb-4">Business Strategy</h3>
+                    <p class="text-gray-400">Scaling plans so smooth, even your Amma will say "Enna magic da?!"</p>
+                </div>
+                <div class="enterprise-card p-8">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="text-xl font-bold mb-4">Free RavanaOS</h3>
+                    <p class="text-gray-400">Corporate-grade automation that replaces HR, Accounting, and 69% of your "strategic meetings".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+                    Meet the Chaos Crew
+                </h2>
+                <p class="text-gray-400">We're not just babysitting brands. We're raising them into legends.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/King.jpg" 
+                             alt="King Ratnam" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">King Ratnam</h3>
+                            <p class="text-indigo-400">Film Director & Ad Veteran</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        
+                    </div>
+                    <p class="text-gray-400">The OG who turns brand narratives into blockbuster material. King brings that "mass hero" energy to every project. If your brand was a movie, he'd be the director yelling "Action!".</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Anji.jpg" 
+                             alt="Anjelo Jones" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Anjelo Jones</h3>
+                            <p class="text-indigo-400">AI-Infused VFX & Editing Sorcerer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">From film editor to AI content machine, Anjelo turns even the driest content into pure 🔥. If your visuals don't stop thumbs, he will.</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Sope.jpg" 
+                             alt="Sopeha Pathurjan" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Sopeha Pathurjan</h3>
+                            <p class="text-indigo-400">Corporate HR Devil's Advocate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">We babysit brands. She babysits us. Our HR queen and our boss lady keeps our chaos in check and tells us when to sit down and shut up.</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Josh.jpg" 
+                             alt="Joshua Heby" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Joshua Heby</h3>
+                            <p class="text-indigo-400">The "Kalaingan Da" Level Artist</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Filmmaker, digital artist, muralist—he makes us say "Nee oru artist nu kattitele!" If your brand needs a visual identity that slaps, Joshua's your guy.</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Ano.jpg" 
+                             alt="Anojan Vinayagamoorthy" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Anojan Vinayagamoorthy</h3>
+                            <p class="text-indigo-400">Professional Scapegoat</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Born to take the heat—so you don't have to. If something's off, he's the one getting scolded first (by us and you). He also makes sure your brand's reputation stays pristine.</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Joel.jpg" 
+                             alt="Joel Jerushan" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Joel Jerushan</h3>
+                            <p class="text-indigo-400">Our IT Avatar</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Eats. Breathes. Codes. If the website crashes, he'll fix it before you even notice. If you need an app, he'll make one while sipping tea. Our tech virtuoso who turns caffeine into code.</p>
+                </div>
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Dunston.jpg" 
+                             alt="Dunston Mani" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Dunston Mani</h3>
+                            <p class="text-indigo-400">The Canadian Culture Translator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Lived his life in the land of double-doubles and polite roasting, Dunstan ensures your brand speaks Canadian while staying globally 🔥. Whether it's Tim Hortons or Tip Tip, he bridges worlds with style.</p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="flex items-center mb-6">
+                        <img src="/img/Nisha.jpg" 
+                             alt="Nisha Thayalan" 
+                             class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-indigo-500">
+                        <div>
+                            <h3 class="text-xl font-bold">Nisha Thayalan</h3>
+                            <p class="text-indigo-400">Marketing Mastermind</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">While brands grow by word of mouth, her growth is purely from the "words from her mouth". Our marketing maven turns conversations into conversions with a blend of wit and wisdom.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Reviews Section -->
+<section class="py-24 bg-opacity-5 bg-indigo-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <div class="hero-badge mb-4">You will be here soon!</div>
+            <h2 class="text-4xl font-bold mb-4">Why Us?</h2>
+            <p class="text-gray-400">Hear it straight from the imaginary brands we've transformed with some popcorns</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="review-card">
+                <p class="text-lg mb-4 gradient-text">
+                    "Pathurjan turned my sari boutique into a TikTok sensation..."
+                </p>
+                <p class="font-bold text-indigo-400">- Karen, Mississauga</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"My app went from 10 users to 10k. Bro's a business Thanos – but instead of vanishing half the universe, he doubled my customer base!"</p>
+                <p class="font-bold text-indigo-400">- Arun, Toronto</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"They turned my dusty Tamil restaurant website into a proper 'mass' landing page. Orders increased faster than my aunty's wedding guest list!"</p>
+                <p class="font-bold text-indigo-400">- Priya, Markham</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"Started with a Laddu box business, now running a dessert empire. These guys market better than an me ex's lies!"</p>
+                <p class="font-bold text-indigo-400">- Raj, Brampton</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"My dance academy was struggling to get students. After their branding magic, I've got more registrations than a Thala's FDFS!"</p>
+                <p class="font-bold text-indigo-400">- Lakshmi, Vancouver</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"These guys turned my accounting firm look so fresh, even Gen Z started following our tax tips. Now that's what I call ROI goals!"</p>
+                <p class="font-bold text-indigo-400">- Kumar, Ottawa</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"Our real estate team was as quiet as a library during finals. Post-BrandSitter, we're running waitlists longer than a the people who wants to come to Canada!"</p>
+                <p class="font-bold text-indigo-400">- Maya, Surrey</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"These guys turned my podcast into the 'Kollywood of Canadian Content'. From 100 listeners to 100k – faster than you can say 'Super da'!"</p>
+                <p class="font-bold text-indigo-400">- Vijay, Montreal</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="review-card">
+                <p class="text-lg mb-4">"Our gym was as quiet as a library during finals. Post-BrandSitter, sweat is dripping from the our gym's walls!"</p>
+                <p class="font-bold text-indigo-400">- Arjun, Calgary</p>
+                <div class="text-amber-500 mt-2">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Updated Contact Section -->
+<section id="contact" class="py-24">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4 gradient-text">
+                Reach Out Before We Reach For<br>
+                <span class="text-2xl">(The Koththu Rotti)</span>
+            </h2>
+            <p class="text-gray-400">If we don't answer, we're probably eating.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Phone Card -->
+            <div class="team-card relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-3xl">
+                        📞
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold gradient-text">Phone Therapy</h3>
+                        <p class="text-indigo-400">Post-Lunch Sessions Only</p>
+                    </div>
+                </div>
+                <p class="text-gray-400">+1 (***) ***-**** (Wife said no number sharing with girls! - use contact form)</p>
+                <div class="mt-4 text-sm text-indigo-400">
+                    "We will call you after eating"<br>
+                    <span class="text-xs">(2pm-4pm EST • No telemarketers, promise)</span>
+                </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="team-card relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-3xl">
+                        ✉️
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold gradient-text">Email SOS</h3>
+                        <p class="text-indigo-400">24/7 Brand ICU</p>
+                    </div>
+                </div>
+                <p class="text-gray-400">parents@brandsitter.ca</p>
+                <div class="mt-4 text-sm text-indigo-400">
+                    "Amma-level care included"<br>
+                    <span class="text-xs">(Replies faster than your cousin's wedding gossip)</span>
+                </div>
+            </div>
+
+            <!-- Location Card -->
+            <div class="team-card relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/10 to-transparent rounded-xl"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 text-3xl">
+                        🗺️
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold gradient-text">HQ Location</h3>
+                        <p class="text-indigo-400">Toronto, ON</p>
+                    </div>
+                </div>
+                <p class="text-gray-400">"Semma price thala..."</p>
+                <div class="mt-4 text-sm text-indigo-400">
+                    Roaming GTA until you're ready<br>
+                    <span class="text-xs">(We'll find you faster than an aunty finds a match)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- CTA Section -->
+    <section class="py-24">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 gradient-text">
+                Stop letting your brand rot<br>
+                in the Ugly Baby Phase.
+            </h2>
+            <div class="flex justify-center gap-6">
+                <a href="pages/wizard.html" 
+                   class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                          text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                          flex items-center gap-2 hover:gap-3">
+                    🚼 Rescue My Brand Now →
+                </a>
+                <button class="border border-indigo-500 px-8 py-4 rounded-full text-indigo-500 hover:bg-indigo-500 hover:text-white transition">
+                    📞 Call Me, Maybe?
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">Not sure? Ask yourself: Is my brand as iconic as Thalaivar's swag? ...Didn't think so. Let's fix that.</p>
+            <div class="easter-egg mb-8">🐷</div>
+            <p class="text-gray-500">&copy; 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!</p>
+            <p class="text-xs text-gray-600 mt-2">
+                A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer" 
+                             class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    Ravana Industries (Pvt) Ltd
+                </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer" 
+                                              class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    International Media Chamber INC
+                </a>
+            </p>
+            <div class="mt-4 space-x-4">
+                <a href="pages/privacy.html" class="text-indigo-400 hover:text-indigo-300">Privacy Policy</a>
+                <a href="pages/terms.html" class="text-indigo-400 hover:text-indigo-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Easter egg functionality
+        document.querySelector('.easter-egg').addEventListener('click', function() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3 class="text-2xl font-bold mb-4">Tamil Meme Reel: Before & After Client Wins</h3>
+                    <div class="aspect-video bg-gray-800 mb-4 rounded-lg">
+                        <div class="h-full flex items-center justify-center">
+                            <p class="text-xl">🎬 Loading Client Transformation Memes...</p>
+                        </div>
+                    </div>
+                    <button class="cta-button w-full">Close</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            modal.querySelector('button').onclick = () => modal.remove();
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation for cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.enterprise-card, .team-card').forEach(card => {
+            card.style.transform = 'translateY(20px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu on navigation
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

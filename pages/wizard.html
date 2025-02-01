@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Rescue Wizard | Get Instant Marketing Solutions - BrandSitter.ca</title>
+    <meta name="description" content="Complete our 3-step brand rescue wizard to get personalized marketing solutions, website development plans, and business strategy recommendations in minutes.">
+    <link rel="canonical" href="https://brandsitter.ca/brand-rescue-wizard" />
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://brandsitter.ca/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Brand Rescue Wizard"
+        }]
+    }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .wizard-step { display: none; }
+        .active-step { display: block; }
+        .progress-bar { height: 4px; transition: width 0.3s ease; }
+        .team-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+        }
+        input, select {
+            width: 100%;    
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: #e0e7ff;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+            transform: scale(1.02);
+        }
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: #818cf8;
+            transition: color 0.3s ease;
+        }
+        .back-button:hover {
+            color: #a5b4fc;
+        }
+        .nav-link {
+            color: #818cf8;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #a5b4fc;
+        }
+        .easter-egg {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 2rem;
+        }
+        .easter-egg:hover {
+            transform: scale(1.1);
+        }
+        .service-option {
+            @apply rounded-xl bg-indigo-900/20 hover:bg-indigo-900/30 transition-all duration-300;
+        }
+        
+        .checkbox-wrapper input[type="checkbox"] {
+            @apply hover:ring-2 hover:ring-indigo-500/30 transition-all duration-300;
+        }
+        
+        .input-wrapper {
+            @apply relative transition-all duration-300 hover:scale-[1.01];
+        }
+        
+        .currency-symbol {
+            @apply absolute left-4 top-1/2 -translate-y-1/2 text-indigo-300 select-none pointer-events-none;
+        }
+    </style>
+</head>
+<body style="background-color: #0a0b2e;" class="text-gray-100">
+    <!-- Add after the opening <body> tag -->
+    <header class="fixed top-0 w-full z-50" style="background: rgba(10, 11, 46, 0.9);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="/img/Web Logo.png" 
+                     alt="BrandSitter Logo - Professional Brand Management Services" 
+                     class="h-12">
+            </a>
+            <button id="mobileMenuButton" class="md:hidden text-indigo-300 p-2 rounded-lg hover:bg-indigo-900/20">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html#services" class="nav-link">Services</a>
+                <a href="/index.html#team" class="nav-link">Chaos Crew</a>
+                <a href="/index.html#contact" 
+                   class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                          flex items-center gap-2">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg md:hidden hidden z-50">
+            <div class="container mx-auto px-6 py-4 space-y-4">
+                <a href="/index.html#services" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Services</a>
+                <a href="/index.html#team" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Chaos Crew</a>
+                <a href="pages/wizard.html" 
+                   class="block bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-colors text-center">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto bg-[#0a0b2e]">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between mb-2 text-indigo-400 text-sm">
+                    <span id="stepCounter"></span>
+                    <span id="stepName"></span>
+                </div>
+                <div class="bg-indigo-900/20 rounded-full h-3 overflow-hidden">
+                    <div class="progress-bar bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-3 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Wizard Steps -->
+            <form id="brandWizard" 
+                  method="POST"
+                  action="https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept">
+                
+                <!-- Hidden fields for Frappe API -->
+                <input type="hidden" name="web_form" value="Brandsitter-ca">
+                <input type="hidden" name="data" id="formDataField">
+                
+                <!-- Required Frappe fields -->
+                <input type="hidden" name="doctype" value="Canada Branding">
+                <input type="hidden" name="cmd" value="frappe.website.doctype.web_form.web_form.accept">
+
+                <!-- Step 1: Business Info -->
+                <div class="wizard-step active-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-8">
+                        <span class="text-4xl">🤌</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Business Details (We Won't Judge Your Startup Name)
+                        </span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Business Name</label>
+                            <input type="text" name="name_of_the_business" required 
+                                   class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                          focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                   placeholder="e.g., 'Mannaram Company'"
+                                   aria-label="Business Name"
+                                   aria-required="true">
+                        </div>
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Business Address</label>
+                            <textarea name="address" required rows="2"
+                                      class="w-full bg-indigo-900/50 border-2 border-indigo-500/70 rounded-xl p-4 text-indigo-200
+                                             focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                      style="color: #e9e9e9; background-color: rgb(10, 11, 46);"
+                                      placeholder="123 Main St, Toronto, ON"
+                                      aria-label="Business Address"
+                                      aria-required="true"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Contact Person</label>
+                                <input type="text" name="name_of_the_contact_person" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200"
+                                       aria-label="Contact Person"
+                                       aria-required="true"
+                                       placeholder="Who should we ask for?">
+                            </div>
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Contact Number</label>
+                                <input type="tel" name="contact_number" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200"
+                                       aria-label="Contact Number"
+                                       aria-required="true"
+                                       placeholder="Your best contact number">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Email Address</label>
+                                <input type="email" name="email" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200"
+                                       aria-label="Email Address"
+                                       aria-required="true"
+                                       placeholder="your@email.com">
+                            </div>
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Website (if available)</label>
+                                <input type="url" name="website"
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="https://"
+                                       aria-label="Website"
+                                       aria-required="false">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Services -->
+                <div class="wizard-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-8">
+                        <span class="text-4xl">🛠️</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Services Needed (We'll do it all!)
+                        </span>
+                    </h2>
+                    <div class="space-y-8">
+                        <!-- Professional Advertisement -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="professional_advertisement"
+                                       class="w-5 h-5 text-purple-500 shrink-0 pointer-events-none">
+                                <label class="text-xl text-indigo-300 flex-1">
+                                    <span class="mr-2"></span>Professional Ads (Video, Print, Radio, etc (Even Tiktok dances like Usha Akka!))
+                                </label>
+                            </div>
+                            <div class="ml-8 input-wrapper">
+                                <label class="block text-indigo-400 mb-2">Budget (Yah, You can ask your Spouse 😏)</label>
+                                <div class="flex items-center">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" name="ad_amount" min="0" step="0.01"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                           placeholder="0.00"
+                                           oninput="document.querySelector('[name=professional_advertisement]').checked = this.value > 0"
+                                           aria-label="Professional Ads Budget"
+                                           aria-required="false">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Digital Marketing -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="digital_marketing" class="w-5 h-5 text-purple-500 mr-3">
+                                <label class="text-xl text-indigo-300">Digital Marketing (For Social Media, Youtube, Google, Tiktok, etc)</label>
+                            </div>
+                            <div class="ml-8 input-wrapper">
+                                <label class="block text-indigo-400 mb-2">Monthly Budget (Ask your accountant first)</label>
+                                <div class="flex items-center">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" name="digital_marketing_pm" min="0" step="0.01"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                           placeholder="0.00"
+                                           oninput="document.querySelector('[name=digital_marketing]').checked = this.value > 0"
+                                           aria-label="Digital Marketing Monthly Budget"
+                                           aria-required="false">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Website -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="website" class="w-5 h-5 text-purple-500 shrink-0 pointer-events-none">
+                                <label class="text-xl text-indigo-300 flex items-center">
+                                    <span class="mr-2"></span>Do you want a Website / E-Commerce?
+                                </label>
+                            </div>
+                            <div class="ml-8 space-y-4 input-wrapper">
+                                <div>
+                                    <label class="block text-indigo-400 mb-2">Type of Website</label>
+                                    <select name="type_of_website" 
+                                            class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200 service-input"
+                                            onchange="document.querySelector('[name=website]').checked = this.value !== ''"
+                                            aria-label="Type of Website"
+                                            aria-required="false">
+                                        <option value="">Select Website Type</option>
+                                        <option value="Normal landing page">Normal landing page</option>
+                                        <option value="E-commerce">E-commerce</option>
+                                        <option value="Custom">Custom</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-indigo-400 mb-2">Your Budget</label>
+                                    <div class="flex items-center">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" name="website_fee" min="0" step="0.01"
+                                               class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                      focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                               oninput="document.querySelector('[name=website]').checked = this.value > 0"
+                                               aria-label="Website Budget"
+                                               aria-required="false">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- App Development -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="app" class="w-5 h-5 text-purple-500 mr-3">
+                                <label class="text-xl text-indigo-300">App Development (iOS/Android)</label>
+                            </div>
+                            <div class="ml-8 input-wrapper">
+                                <label class="block text-indigo-400 mb-2">Your Budget (You might not need it! but it's your money!)</label>
+                                <div class="flex items-center">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" name="app_fee" min="0" step="0.01"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                           placeholder="0.00"
+                                           oninput="document.querySelector('[name=app]').checked = this.value > 0"
+                                           aria-label="App Development Budget"
+                                           aria-required="false">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Branding -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="branding" class="w-5 h-5 text-purple-500 mr-3">
+                                <label class="text-xl text-indigo-300">Branding (Logo, Brand Identity, etc)</label>
+                            </div>
+                            <div class="ml-8 input-wrapper">
+                                <label class="block text-indigo-400 mb-2">Your Budget (Arghh we know! These designers aren't cheap! So give us a good number!)</label>
+                                <div class="flex items-center">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" name="branding_fee" min="0" step="0.01"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                           placeholder="0.00"
+                                           oninput="document.querySelector('[name=branding]').checked = this.value > 0"
+                                           aria-label="Branding Budget"
+                                           aria-required="false">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Strategy -->
+                        <div class="service-option p-6">
+                            <div class="flex items-center mb-3 checkbox-wrapper">
+                                <input type="checkbox" name="business_strategy_consultation" class="w-5 h-5 text-purple-500 mr-3">
+                                <label class="text-xl text-indigo-300">Business Strategy Consultation (Strategies that will boost your sales by 40%!)</label>
+                            </div>
+                            <div class="ml-8 input-wrapper">
+                                <label class="block text-indigo-400 mb-2">How much is your 40% sales boost worth? (Remember we will check your accounts!)</label>
+                                <div class="flex items-center">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" name="consult_fee" min="0" step="0.01"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 pl-6 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors service-input"
+                                           placeholder="0.00"
+                                           oninput="document.querySelector('[name=business_strategy_consultation]').checked = this.value > 0"
+                                           aria-label="Business Strategy Consultation Fee"
+                                           aria-required="false">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Final Details -->
+                <div class="wizard-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="text-4xl">📝</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Gift and Promise Time!
+                        </span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Anything you want to say?</label>
+                            <textarea name="notes" rows="3"
+                                      class="w-full bg-indigo-900/50 border-2 border-indigo-500/70 rounded-xl p-4 text-indigo-200
+                                             focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                             style="color: #e9e9e9; background-color: rgb(10, 11, 46);"
+                                      placeholder="Rants about neighbours, suggestions, or just want to say hi?"
+                                      aria-label="Additional Notes"
+                                      aria-required="false"></textarea>
+                        </div>
+                        <div class="service-option p-6 rounded-xl bg-indigo-900/20 border-2 border-indigo-500/30 transition-all hover:border-indigo-500/60">
+                            <div class="flex items-start space-x-4">
+                                <input type="checkbox" name="erp_agreement" required 
+                                       class="mt-1 h-6 w-6 bg-indigo-900/40 border-2 border-indigo-500/60 rounded-md checked:bg-indigo-500 focus:ring-indigo-500">
+                                <div>
+                                    <h3 class="text-lg font-semibold">Free Million-Dollar ERP Software</h3>
+                                    <p class="text-indigo-400 text-sm mt-1">Yes! I want RavanaERP (worth $1M+) and promise not to tell others especially our CEO!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-option p-6 rounded-xl bg-indigo-900/20 border-2 border-indigo-500/30 transition-all hover:border-indigo-500/60">
+                            <div class="flex items-start space-x-4">
+                                <input type="checkbox" name="contact_agreement" required 
+                                       class="mt-1 h-6 w-6 bg-indigo-900/40 border-2 border-indigo-500/60 rounded-md checked:bg-indigo-500 focus:ring-indigo-500">
+                                <div>
+                                    <h3 class="text-lg font-semibold">Contact Permission</h3>
+                                    <p class="text-indigo-400 text-sm mt-1">I agree to be contacted by BrandSitter and affiliates (Pinky promise that you won't sue us!)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Updated Navigation Controls -->
+                <div class="flex justify-between mt-12 gap-4">
+                    <button type="button" onclick="previousStep()" 
+                            class="bg-indigo-900/20 hover:bg-indigo-900/40 px-8 py-4 rounded-xl transition-all
+                                   text-indigo-400 hover:text-indigo-300 font-semibold
+                                   flex items-center gap-2 hover:gap-3">
+                        ← Back (Like Your Ex's Texts)
+                    </button>
+                    <button type="button" onclick="nextStep()" 
+                            class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                                   text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                                   flex items-center gap-2 hover:gap-3"
+                                   data-loading="Saving...">
+                        Next Step → (Adventure Awaits!)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+ 
+    <footer class="border-t border-gray-800 bg-[#0a0b2e] mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <div class="easter-egg mb-4 text-4xl hover:rotate-12 transition-transform">🦚</div>
+            <p class="text-gray-500 text-sm">
+                © 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!<br>
+                <span class="text-xs">PS: If your brand was a Tamil movie hero, would it be Thala or Thalapathy? Our AI will judge you 🔍</span>
+            </p>
+            <p class="text-xs text-gray-600 mt-2">
+                A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer" 
+                             class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    Ravana Industries (Pvt) Ltd
+                </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer" 
+                                              class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    International Media Chamber INC
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Initialize progress bar on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+        });
+
+        function updateProgress() {
+            const stepNames = ['Business Details', 'Services', 'Final Details'];
+            document.querySelector('.progress-bar').style.width = `${(currentStep/totalSteps)*100}%`;
+            document.getElementById('stepCounter').textContent = `Step ${currentStep} of 3`;
+            document.getElementById('stepName').textContent = stepNames[currentStep-1] || 'Final Details';
+            document.querySelectorAll('.wizard-step').forEach((step, index) => {
+                step.classList.toggle('active-step', index+1 === currentStep);
+            });
+        }
+
+        function nextStep() {
+            if(currentStep < totalSteps && validateStep()) {
+                currentStep++;
+                updateProgress();
+            } else if(currentStep === totalSteps) {
+                submitForm();
+            }
+        }
+
+        function previousStep() {
+            if(currentStep > 1) {
+                currentStep--;
+                updateProgress();
+            }
+        }
+
+        function validateStep() {
+            // Add validation logic per step
+            return true;
+        }
+
+        async function submitForm() {
+            const isDevelopment = window.location.hostname === '127.0.0.1';
+            const apiUrl = isDevelopment 
+                ? 'http://localhost:3000/proxy'
+                : 'https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept';
+
+            const formData = {
+                web_form: "Brandsitter-ca",
+                data: JSON.stringify({
+                    doctype: "Canada Branding",
+                    name_of_the_business: document.querySelector('[name="name_of_the_business"]').value,
+                    address: document.querySelector('[name="address"]').value,
+                    name_of_the_contact_person: document.querySelector('[name="name_of_the_contact_person"]').value,
+                    contact_number: document.querySelector('[name="contact_number"]').value,
+                    email: document.querySelector('[name="email"]').value,
+                    website: document.querySelector('[name="website"]').value,
+                    ad_amount: document.querySelector('[name="ad_amount"]').value,
+                    digital_marketing_pm: document.querySelector('[name="digital_marketing_pm"]').value,
+                    type_of_website: document.querySelector('[name="type_of_website"]').value,
+                    website_fee: document.querySelector('[name="website_fee"]').value,
+                    app_fee: document.querySelector('[name="app_fee"]').value,
+                    branding_fee: document.querySelector('[name="branding_fee"]').value,
+                    consult_fee: document.querySelector('[name="consult_fee"]').value,
+                    notes: document.querySelector('[name="notes"]').value
+                }),
+                ...(isDevelopment && { 
+                    'X-Proxy-Authorization': 'token 67053b972869781:858b3178b556192' 
+                })
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    window.location.href = '/success.html';
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(`Submission failed: ${response.status} - ${errorText}`);
+                }
+            } catch (error) {
+                alert(`Submission failed: ${error.message}`);
+            }
+        }
+
+        // Update the service option click handler
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.style.cursor = 'pointer';
+            option.addEventListener('click', function(e) {
+                // Allow text selection within inputs
+                if (e.target.tagName === 'INPUT') return;
+                
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+                
+                // Trigger visual feedback
+                this.classList.toggle('bg-indigo-900/40', checkbox.checked);
+                this.classList.toggle('border-indigo-500/60', checkbox.checked);
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu on navigation
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html> 

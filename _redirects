@@ -1,0 +1,5 @@
+# Handle www subdomain
+www.brandsitter.ca/* https://brandsitter.ca/:splat 301!
+
+# Handle old URLs if any exist
+/old-page    /new-page    301 

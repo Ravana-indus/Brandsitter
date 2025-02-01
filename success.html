@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You for Contacting BrandSitter.ca | Brand Rescue Initiated</title>
+    <meta name="description" content="Thank you for choosing BrandSitter.ca! Our team will contact you shortly to discuss your brand management needs. Expect faster service than an ice cream truck in summer!">
+    <link rel="canonical" href="https://brandsitter.ca/success" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0a0b2e; }
+        .success-emoji { font-size: 4rem; }
+    </style>
+    
+    <!-- Schema FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "What happens after form submission?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our team reviews your submission and will contact you within 24 business hours to discuss your brand management needs."
+            }
+        }]
+    }
+    </script>
+</head>
+<body class="text-white flex items-center justify-center min-h-screen">
+    <div class="text-center p-8 max-w-2xl mx-auto">
+        <div class="success-emoji mb-4">🎉</div>
+        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+            Brand Rescue Initiated!
+        </h1>
+        <p class="text-xl text-indigo-300 mb-8">
+            We'll contact you faster than Ice cream van!
+        </p>
+        <img src="/img/vadivelu.gif" 
+             alt="Vadivelu waiting" 
+             class="mx-auto w-full max-w-md rounded-xl border-2 border-indigo-500/50 mb-8
+                    hover:scale-105 transition-transform duration-300 shadow-xl shadow-indigo-500/30">
+        <a href="/index.html" 
+           class="inline-block bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 
+                  px-8 py-4 rounded-xl text-white font-semibold transition-all hover:shadow-lg 
+                  hover:shadow-indigo-500/20">
+            ← Back to Home
+        </a>
+        <p class="text-gray-500 text-sm mt-4">
+            © 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!
+        </p>
+        <p class="text-xs text-gray-600 mt-2">
+            A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer" 
+                         class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                Ravana Industries (Pvt) Ltd
+            </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer" 
+                                          class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                International Media Chamber INC
+            </a>
+        </p>
+    </div>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu on navigation
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html> 
