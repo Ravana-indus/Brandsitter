@@ -9,6 +9,16 @@
     <style>
         body { background-color: #0a0b2e; }
         .success-emoji { font-size: 4rem; }
+        @media (max-width: 640px) {
+            .success-button {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            .easter-egg {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
     </style>
     
     <!-- Schema FAQ -->
@@ -26,39 +36,58 @@
         }]
     }
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 </head>
 <body class="text-white flex items-center justify-center min-h-screen">
-    <div class="text-center p-8 max-w-2xl mx-auto">
+    <div class="container mx-auto px-4 py-20 text-center">
         <div class="success-emoji mb-4">🎉</div>
-        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-            Brand Rescue Initiated!
-        </h1>
-        <p class="text-xl text-indigo-300 mb-8">
-            We'll contact you faster than Ice cream van!
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Success! 🎉</h1>
+        <p class="text-lg md:text-xl text-indigo-300 mb-8 md:mb-12 max-w-2xl mx-auto px-4">
+            Our Chaos Crew has received your brand SOS! Expect a rescue mission within 24 hours.
         </p>
-        <img src="/img/vadivelu.gif" 
-             alt="Vadivelu waiting" 
-             class="mx-auto w-full max-w-md rounded-xl border-2 border-indigo-500/50 mb-8
-                    hover:scale-105 transition-transform duration-300 shadow-xl shadow-indigo-500/30">
-        <a href="/index.html" 
-           class="inline-block bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 
-                  px-8 py-4 rounded-xl text-white font-semibold transition-all hover:shadow-lg 
-                  hover:shadow-indigo-500/20">
-            ← Back to Home
-        </a>
+        <img src="/img/Web Logo.png" 
+             alt="BrandSitter Logo" 
+             class="h-12 w-auto"
+             loading="lazy"
+             decoding="async">
+        <div class="space-y-4 md:space-y-6 max-w-xs mx-auto px-2">
+            <a href="/" 
+               class="block bg-indigo-600 hover:bg-indigo-700 text-white py-3 md:py-4 px-6 md:px-8 rounded-xl text-lg font-semibold transition-colors">
+                ← Back to Home
+            </a>
+        </div>
         <p class="text-gray-500 text-sm mt-4">
             © 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!
         </p>
-        <p class="text-xs text-gray-600 mt-2">
+        <p class="text-xs text-gray-600 mt-2 px-2">
             A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer" 
-                         class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                         class="text-indigo-400 hover:text-indigo-300 transition-colors break-words">
                 Ravana Industries (Pvt) Ltd
             </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer" 
-                                          class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                                          class="text-indigo-400 hover:text-indigo-300 transition-colors break-words">
                 International Media Chamber INC
             </a>
         </p>
     </div>
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <p class="mb-3 md:mb-4 text-sm md:text-base">Not sure? Ask yourself: Is my brand as iconic as Thalaivar's swag? ...Didn't think so. Let's fix that.</p>
+            
+            <div class="easter-egg mb-6 md:mb-8">🐷</div>
+            
+            <p class="text-gray-500 text-sm md:text-base">&copy; 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!</p>
+            
+            <p class="text-xs text-gray-600 mt-2 px-2">
+                A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer" 
+                             class="text-indigo-400 hover:text-indigo-300 transition-colors break-words">
+                    Ravana Industries (Pvt) Ltd
+                </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer" 
+                                              class="text-indigo-400 hover:text-indigo-300 transition-colors break-words">
+                    International Media Chamber INC
+                </a>
+            </p>
+        </div>
+    </footer>
     <script>
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');

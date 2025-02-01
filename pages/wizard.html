@@ -493,6 +493,10 @@
             if(currentStep < totalSteps && validateStep()) {
                 currentStep++;
                 updateProgress();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             } else if(currentStep === totalSteps) {
                 submitForm();
             }
@@ -502,6 +506,10 @@
             if(currentStep > 1) {
                 currentStep--;
                 updateProgress();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
         }
 
