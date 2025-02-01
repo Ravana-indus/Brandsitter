@@ -9,6 +9,23 @@
     <style>
         body { background-color: #0a0b2e; }
         .success-emoji { font-size: 4rem; }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 640px) {
+            .success-emoji {
+                font-size: 3rem;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .text-4xl {
+                font-size: 2rem;
+            }
+            .text-xl {
+                font-size: 1.125rem;
+            }
+        }
     </style>
     
     <!-- Schema FAQ -->
@@ -26,6 +43,9 @@
         }]
     }
     </script>
+
+    <!-- Viewport meta tag for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -82,7 +102,7 @@
                 Brand Rescue Initiated!
             </h1>
             <p class="text-xl text-indigo-300 mb-8">
-                We'll contact you faster than Ice cream van!
+                We'll contact you faster than Covid19!
             </p>
             <img src="/img/vadivelu.gif" 
                  alt="Vadivelu waiting" 
