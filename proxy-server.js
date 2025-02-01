@@ -3,7 +3,19 @@ const cors = require('cors');
 const fetch = require('node-fetch').default;
 const app = express();
 
-app.use(cors());
+// Update CORS configuration to include development domains
+app.use(cors({
+    origin: [
+        'https://brandsitter.pages.dev', 
+        'https://brandsitter.ca', 
+        'http://localhost:3000',
+        'http://127.0.0.1:5500',  // Added Live Server domain
+        'http://localhost:5500'    // Added alternative Live Server domain
+    ],
+    methods: ['POST', 'GET', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 app.post('/proxy', async (req, res) => {
@@ -18,11 +30,12 @@ app.post('/proxy', async (req, res) => {
         });
         
         const data = await response.json();
-        
         res.status(response.status).json(data);
     } catch (error) {
+        console.error('Proxy Error:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-app.listen(3000, () => console.log('Proxy server running on port 3000')); 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Proxy server running on port ${PORT}`)); 
