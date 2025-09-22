@@ -524,29 +524,41 @@
         }
 
         async function submitForm() {
+            // Collect form data directly - no wrapper needed
             const formData = {
-                web_form: "Brandsitter-ca",
-                data: JSON.stringify({
-                    doctype: "Canada Branding",
-                    name_of_the_business: document.querySelector('[name="name_of_the_business"]').value,
-                    address: document.querySelector('[name="address"]').value,
-                    name_of_the_contact_person: document.querySelector('[name="name_of_the_contact_person"]').value,
-                    contact_number: document.querySelector('[name="contact_number"]').value,
-                    email: document.querySelector('[name="email"]').value,
-                    website: document.querySelector('[name="website"]').value,
-                    ad_amount: document.querySelector('[name="ad_amount"]').value,
-                    digital_marketing_pm: document.querySelector('[name="digital_marketing_pm"]').value,
-                    type_of_website: document.querySelector('[name="type_of_website"]').value,
-                    website_fee: document.querySelector('[name="website_fee"]').value,
-                    app_fee: document.querySelector('[name="app_fee"]').value,
-                    branding_fee: document.querySelector('[name="branding_fee"]').value,
-                    consult_fee: document.querySelector('[name="consult_fee"]').value,
-                    notes: document.querySelector('[name="notes"]').value
-                })
+                // Business and contact information
+                name_of_the_business: document.querySelector('[name="name_of_the_business"]').value,
+                address: document.querySelector('[name="address"]').value,
+                name_of_the_contact_person: document.querySelector('[name="name_of_the_contact_person"]').value,
+                contact_number: document.querySelector('[name="contact_number"]').value,
+                email: document.querySelector('[name="email"]').value,
+                website: document.querySelector('[name="website"]').value,
+
+                // Services - check if inputs have values > 0
+                professional_advertisement: document.querySelector('[name="ad_amount"]').value > 0,
+                ad_amount: document.querySelector('[name="ad_amount"]').value,
+                digital_marketing: document.querySelector('[name="digital_marketing_pm"]').value > 0,
+                digital_marketing_pm: document.querySelector('[name="digital_marketing_pm"]').value,
+                website: document.querySelector('[name="website_fee"]').value > 0 || document.querySelector('[name="type_of_website"]').value !== '',
+                type_of_website: document.querySelector('[name="type_of_website"]').value,
+                website_fee: document.querySelector('[name="website_fee"]').value,
+                app: document.querySelector('[name="app_fee"]').value > 0,
+                app_fee: document.querySelector('[name="app_fee"]').value,
+                branding: document.querySelector('[name="branding_fee"]').value > 0,
+                branding_fee: document.querySelector('[name="branding_fee"]').value,
+                business_strategy_consultation: document.querySelector('[name="consult_fee"]').value > 0,
+                consult_fee: document.querySelector('[name="consult_fee"]').value,
+
+                // Additional information
+                notes: document.querySelector('[name="notes"]').value,
+
+                // Consent checkboxes
+                erp_agreement: document.querySelector('[name="erp_agreement"]').checked,
+                contact_agreement: document.querySelector('[name="contact_agreement"]').checked
             };
 
             try {
-                const response = await fetch('/api/submit', {
+                const response = await fetch('/api/canada-branding', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
