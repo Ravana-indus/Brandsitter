@@ -2,7 +2,7 @@ export async function onRequestPost(context) {
     try {
         const { request } = context;
         const origin = request.headers.get('Origin') || '*';
-        
+
         // Handle preflight for complex requests
         if (request.method === 'OPTIONS') {
             return new Response(null, {
@@ -17,7 +17,7 @@ export async function onRequestPost(context) {
 
         // Process actual POST request
         const body = await request.json();
-        
+
         const frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept', {
             method: 'POST',
             headers: {
@@ -28,7 +28,7 @@ export async function onRequestPost(context) {
         });
 
         const data = await frappeResponse.json();
-        
+
         return new Response(JSON.stringify(data), {
             status: frappeResponse.status,
             headers: {
@@ -40,7 +40,7 @@ export async function onRequestPost(context) {
         });
 
     } catch (error) {
-        return new Response(JSON.stringify({ 
+        return new Response(JSON.stringify({
             error: error.message || 'Internal Server Error'
         }), {
             status: 500,
@@ -50,4 +50,19 @@ export async function onRequestPost(context) {
             }
         });
     }
+}
+
+export async function onRequestOptions(context) {
+    const request = context.request;
+    const origin = request.headers.get('Origin') || '*';
+
+    return new Response(null, {
+        headers: {
+            'Access-Control-Allow-Origin': origin,
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Max-Age': '86400',
+            'Vary': 'Origin'
+        }
+    });
 }
