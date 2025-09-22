@@ -17,6 +17,7 @@ export async function onRequestPost(context) {
 
         // Process actual POST request
         const body = await request.json();
+        console.log('Received body:', JSON.stringify(body));
 
         const frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept', {
             method: 'POST',
@@ -27,10 +28,42 @@ export async function onRequestPost(context) {
             body: JSON.stringify(body)
         });
 
-        const data = await frappeResponse.json();
+        console.log('Frappe response status:', frappeResponse.status);
+        console.log('Frappe response headers:', Object.fromEntries(frappeResponse.headers));
+
+        // Check if response is ok and has content
+        if (!frappeResponse.ok) {
+            const errorText = await frappeResponse.text();
+            console.log('Frappe error response:', errorText);
+            return new Response(JSON.stringify({
+                error: `Frappe API Error: ${frappeResponse.status} - ${errorText}`
+            }), {
+                status: frappeResponse.status,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': origin,
+                }
+            });
+        }
+
+        // Try to parse JSON response
+        const responseText = await frappeResponse.text();
+        console.log('Frappe response text:', responseText);
+
+        let data;
+        try {
+            data = responseText ? JSON.parse(responseText) : { message: 'Success' };
+        } catch (parseError) {
+            console.log('JSON parse error:', parseError.message);
+            data = {
+                message: 'Success',
+                raw_response: responseText,
+                note: 'Response was not valid JSON but request succeeded'
+            };
+        }
 
         return new Response(JSON.stringify(data), {
-            status: frappeResponse.status,
+            status: 200,
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': origin,
@@ -40,8 +73,10 @@ export async function onRequestPost(context) {
         });
 
     } catch (error) {
+        console.log('Function error:', error.message, error.stack);
         return new Response(JSON.stringify({
-            error: error.message || 'Internal Server Error'
+            error: error.message || 'Internal Server Error',
+            details: error.stack
         }), {
             status: 500,
             headers: {
