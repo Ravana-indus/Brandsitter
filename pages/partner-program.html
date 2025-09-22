@@ -129,6 +129,30 @@
             color: #818cf8;
             transition: all 0.3s ease;
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            .enterprise-card {
+                margin: 0 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .enterprise-card {
+                margin: 0 0.5rem;
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -177,46 +201,46 @@
     <!-- Hero Section -->
     <section class="hero-section pt-20">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-16 md:mb-0">
-                    <div class="hero-badge mb-8">🌟 Become a BrandSitter Partner</div>
-                    <h1 class="text-5xl md:text-7xl font-bold mb-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
+                    <div class="hero-badge mb-6 md:mb-8 inline-block">🌟 Become a BrandSitter Partner</div>
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8">
                         Turn Your Influence Into
                         <span class="gradient-text">Income</span>
                     </h1>
-                    <p class="text-xl md:text-2xl mb-12 text-gray-400">
+                    <p class="text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 text-gray-400">
                         Got 5K+ followers? Join our partner program and earn commission promoting brand management services that actually work.
                     </p>
-                    <div class="flex gap-6">
+                    <div class="flex justify-center lg:justify-start">
                         <a href="partner-application.html"
-                           class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                           class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-6 md:px-8 py-3 md:py-4 rounded-xl
                                   text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
                                   flex items-center gap-2">
                             Join the Program →
                         </a>
                     </div>
                 </div>
-                <div class="md:w-1/2 mt-12 md:mt-0">
-                    <div class="enterprise-card p-8 w-4/5 mx-auto">
+                <div class="lg:w-1/2 w-full max-w-md lg:max-w-none">
+                    <div class="enterprise-card p-6 md:p-8 mx-auto lg:w-4/5">
                         <div class="text-center">
-                            <img src="/img/Web Logo.png" alt="BrandSitter Logo" class="h-16 mx-auto mb-6">
-                            <h3 class="text-2xl font-bold mb-4 gradient-text">Partner Perks</h3>
-                            <div class="space-y-3 text-left">
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-3">✓</span>
-                                    <span>Unique promo codes</span>
+                            <img src="/img/Web Logo.png" alt="BrandSitter Logo" class="h-12 md:h-16 mx-auto mb-4 md:mb-6">
+                            <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 gradient-text">Partner Perks</h3>
+                            <div class="space-y-3 md:space-y-4">
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <span class="text-green-400 mr-3 text-lg">✓</span>
+                                    <span class="text-sm md:text-base">Unique promo codes</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-3">✓</span>
-                                    <span>Product guidelines & assets</span>
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <span class="text-green-400 mr-3 text-lg">✓</span>
+                                    <span class="text-sm md:text-base">Product guidelines & assets</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-3">✓</span>
-                                    <span>Commission on every sale</span>
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <span class="text-green-400 mr-3 text-lg">✓</span>
+                                    <span class="text-sm md:text-base">Commission on every sale</span>
                                 </div>
-                                <div class="flex items-center">
-                                    <span class="text-green-400 mr-3">✓</span>
-                                    <span>Monthly payouts</span>
+                                <div class="flex items-center justify-center md:justify-start">
+                                    <span class="text-green-400 mr-3 text-lg">✓</span>
+                                    <span class="text-sm md:text-base">Weekly payouts</span>
                                 </div>
                             </div>
                         </div>
