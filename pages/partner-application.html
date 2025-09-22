@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandsitter Partner Application | Join Our Influencer Program</title>
+    <meta name="description" content="Apply to join Brandsitter's exclusive partner program. Social media influencers with 5000+ followers can earn commission promoting our services.">
+    <link rel="canonical" href="https://brandsitter.ca/partner-application" />
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://brandsitter.ca/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Partner Program",
+            "item": "https://brandsitter.ca/pages/partner-program.html"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Application"
+        }]
+    }
+    </script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .wizard-step { display: none; }
+        .active-step { display: block; }
+        .progress-bar { height: 4px; transition: width 0.3s ease; }
+        .team-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+        }
+        input, select {
+            width: 100%;
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: #e0e7ff;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+            transform: scale(1.02);
+        }
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: #818cf8;
+            transition: color 0.3s ease;
+        }
+        .back-button:hover {
+            color: #a5b4fc;
+        }
+        .nav-link {
+            color: #818cf8;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #a5b4fc;
+        }
+        .easter-egg {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 2rem;
+        }
+        .easter-egg:hover {
+            transform: scale(1.1);
+        }
+        .input-wrapper {
+            @apply relative transition-all duration-300 hover:scale-[1.01];
+        }
+        .checkbox-wrapper input[type="checkbox"] {
+            @apply hover:ring-2 hover:ring-indigo-500/30 transition-all duration-300;
+        }
+        .social-input-group {
+            @apply relative;
+        }
+        .social-input-group input {
+            @apply pl-12;
+        }
+        .social-input-group::before {
+            @apply absolute left-4 top-1/2 -translate-y-1/2 text-indigo-300 text-sm select-none pointer-events-none;
+            content: attr(data-platform);
+        }
+    </style>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body style="background-color: #0a0b2e;" class="text-gray-100">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50" style="background: rgba(10, 11, 46, 0.9);">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="/img/Web Logo.png"
+                     alt="BrandSitter Logo - Professional Brand Management Services"
+                     class="h-12">
+            </a>
+            <button id="mobileMenuButton" class="md:hidden text-indigo-300 p-2 rounded-lg hover:bg-indigo-900/20">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/#services" class="nav-link">Services</a>
+                <a href="/#team" class="nav-link">Chaos Crew</a>
+                <a href="/pages/partner-program.html" class="nav-link">Partner Program</a>
+                <a href="/pages/wizard.html"
+                   class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                          flex items-center gap-2">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg md:hidden hidden z-50">
+            <div class="container mx-auto px-6 py-4 space-y-4">
+                <a href="/#services" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Services</a>
+                <a href="/#team" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Chaos Crew</a>
+                <a href="/pages/partner-program.html" class="block text-gray-800 hover:text-indigo-600 text-lg transition-colors">Partner Program</a>
+                <a href="/pages/wizard.html"
+                   class="block bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-xl
+                          text-white font-semibold transition-colors text-center">
+                    Rescue My Brand →
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto bg-[#0a0b2e]">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between mb-2 text-indigo-400 text-sm">
+                    <span id="stepCounter"></span>
+                    <span id="stepName"></span>
+                </div>
+                <div class="bg-indigo-900/20 rounded-full h-3 overflow-hidden">
+                    <div class="progress-bar bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-3 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Wizard Steps -->
+            <form id="partnerApplicationForm"
+                  method="POST"
+                  action="https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept">
+
+                <!-- Hidden fields for Frappe API -->
+                <input type="hidden" name="web_form" value="brandsitter">
+                <input type="hidden" name="data" id="formDataField">
+
+                <!-- Required Frappe fields -->
+                <input type="hidden" name="doctype" value="brandsitter">
+                <input type="hidden" name="cmd" value="frappe.website.doctype.web_form.web_form.accept">
+
+                <!-- Step 1: Personal Information -->
+                <div class="wizard-step active-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-8">
+                        <span class="text-4xl">👤</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Personal Information
+                        </span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">First Name</label>
+                                <input type="text" name="first_name" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="Your first name"
+                                       aria-label="First Name"
+                                       aria-required="true">
+                            </div>
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Last Name</label>
+                                <input type="text" name="last_name" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="Your last name"
+                                       aria-label="Last Name"
+                                       aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Phone</label>
+                                <input type="tel" name="phone" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="+1 (555) 123-4567"
+                                       aria-label="Phone Number"
+                                       aria-required="true">
+                            </div>
+                            <div>
+                                <label class="block text-indigo-300 mb-3 text-lg">Email</label>
+                                <input type="email" name="email" required
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="your@email.com"
+                                       aria-label="Email Address"
+                                       aria-required="true">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Gender</label>
+                            <select name="gender" required
+                                    class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                           focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                    aria-label="Gender"
+                                    aria-required="true">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Languages You Speak</label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <label class="flex items-center checkbox-wrapper">
+                                    <input type="checkbox" name="english" value="1" class="w-5 h-5 text-purple-500 mr-3">
+                                    <span class="text-indigo-300">English</span>
+                                </label>
+                                <label class="flex items-center checkbox-wrapper">
+                                    <input type="checkbox" name="sinhala" value="1" class="w-5 h-5 text-purple-500 mr-3">
+                                    <span class="text-indigo-300">Sinhala</span>
+                                </label>
+                                <label class="flex items-center checkbox-wrapper">
+                                    <input type="checkbox" name="tamil" value="1" class="w-5 h-5 text-purple-500 mr-3">
+                                    <span class="text-indigo-300">Tamil</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Social Media Information -->
+                <div class="wizard-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-8">
+                        <span class="text-4xl">📱</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Social Media Presence
+                        </span>
+                    </h2>
+                    <div class="space-y-6">
+                        <!-- Social Media Handles -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="social-input-group" data-platform="@">
+                                <label class="block text-indigo-300 mb-3 text-lg">Instagram ID</label>
+                                <input type="text" name="instagram_id"
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="yourusername"
+                                       aria-label="Instagram Username">
+                            </div>
+                            <div class="social-input-group" data-platform="@">
+                                <label class="block text-indigo-300 mb-3 text-lg">Facebook ID</label>
+                                <input type="text" name="facebook_id"
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="yourusername"
+                                       aria-label="Facebook Username">
+                            </div>
+                            <div class="social-input-group" data-platform="@">
+                                <label class="block text-indigo-300 mb-3 text-lg">YouTube ID</label>
+                                <input type="text" name="youtube_id"
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="yourchannel"
+                                       aria-label="YouTube Channel Name">
+                            </div>
+                            <div class="social-input-group" data-platform="@">
+                                <label class="block text-indigo-300 mb-3 text-lg">TikTok ID</label>
+                                <input type="text" name="tiktok_id"
+                                       class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                              focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                       placeholder="yourusername"
+                                       aria-label="TikTok Username">
+                            </div>
+                        </div>
+
+                        <!-- Content Style -->
+                        <div>
+                            <label class="flex items-center checkbox-wrapper">
+                                <input type="checkbox" name="with_face" value="1" class="w-5 h-5 text-purple-500 mr-3">
+                                <span class="text-indigo-300">I create content showing my face</span>
+                            </label>
+                        </div>
+
+                        <!-- Follower Counts -->
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Your Audience Size</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-indigo-400 mb-2 text-sm">Instagram Followers</label>
+                                    <input type="number" name="instagram_followers_full_number" min="0"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                           placeholder="0"
+                                           aria-label="Instagram Followers Count">
+                                </div>
+                                <div>
+                                    <label class="block text-indigo-400 mb-2 text-sm">Facebook Followers</label>
+                                    <input type="number" name="facebook_followers_full_number" min="0"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                           placeholder="0"
+                                           aria-label="Facebook Followers Count">
+                                </div>
+                                <div>
+                                    <label class="block text-indigo-400 mb-2 text-sm">YouTube Subscribers</label>
+                                    <input type="number" name="youtube_subscribers_full_number" min="0"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                           placeholder="0"
+                                           aria-label="YouTube Subscribers Count">
+                                </div>
+                                <div>
+                                    <label class="block text-indigo-400 mb-2 text-sm">TikTok Followers</label>
+                                    <input type="number" name="tiktok_followers_full_number" min="0"
+                                           class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                                  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                           placeholder="0"
+                                           aria-label="TikTok Followers Count">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Consent & Final Details -->
+                <div class="wizard-step team-card p-8">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="text-4xl">📝</span>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                            Almost Done!
+                        </span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-indigo-300 mb-3 text-lg">Are you interested in becoming an affiliate marketing influencer?</label>
+                            <select name="are_you_interested_in_becoming_a_affiliate_marketing_influencer" required
+                                    class="w-full bg-indigo-900/40 border-2 border-indigo-500/60 rounded-xl p-4 text-indigo-200
+                                           focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50 transition-colors"
+                                    aria-label="Affiliate Interest"
+                                    aria-required="true">
+                                <option value="">Select your interest level</option>
+                                <option value="Yes">Yes, I'm very interested!</option>
+                                <option value="No">No, not at this time</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between mt-12 gap-4">
+                    <button type="button" onclick="previousStep()"
+                            class="bg-indigo-900/20 hover:bg-indigo-900/40 px-8 py-4 rounded-xl transition-all
+                                   text-indigo-400 hover:text-indigo-300 font-semibold
+                                   flex items-center gap-2 hover:gap-3">
+                        ← Back
+                    </button>
+                    <button type="button" onclick="nextStep()"
+                            class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl
+                                   text-white font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/20
+                                   flex items-center gap-2 hover:gap-3"
+                            data-loading="Processing...">
+                        Next Step →
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="border-t border-gray-800 bg-[#0a0b2e] mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <div class="easter-egg mb-4 text-4xl hover:rotate-12 transition-transform">🤝</div>
+            <p class="text-gray-500 text-sm">
+                © 2025 BrandSitter.ca - Because Even Brands Need a Babysitter!<br>
+                <span class="text-xs">Join our partner program and turn your influence into income! 💰</span>
+            </p>
+            <p class="text-xs text-gray-600 mt-2">
+                A brand by <a href="https://ravanaindustries.com" target="_blank" rel="noopener noreferrer"
+                             class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    Ravana Industries (Pvt) Ltd
+                </a> in collaboration with <a href="https://annachinews.com/" target="_blank" rel="noopener noreferrer"
+                                              class="text-indigo-400 hover:text-indigo-300 transition-colors">
+                    International Media Chamber INC
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Initialize progress bar on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+        });
+
+        function updateProgress() {
+            const stepNames = ['Personal Information', 'Social Media', 'Review & Submit'];
+            document.querySelector('.progress-bar').style.width = `${(currentStep/totalSteps)*100}%`;
+            document.getElementById('stepCounter').textContent = `Step ${currentStep} of ${totalSteps}`;
+            document.getElementById('stepName').textContent = stepNames[currentStep-1] || 'Final Step';
+            document.querySelectorAll('.wizard-step').forEach((step, index) => {
+                step.classList.toggle('active-step', index+1 === currentStep);
+            });
+        }
+
+        function nextStep() {
+            if(currentStep < totalSteps && validateStep()) {
+                currentStep++;
+                updateProgress();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else if(currentStep === totalSteps) {
+                // Set loading state
+                const submitButton = document.querySelector('button[data-loading]');
+                submitButton.textContent = submitButton.dataset.loading;
+                submitButton.disabled = true;
+
+                submitForm();
+            }
+        }
+
+        function previousStep() {
+            if(currentStep > 1) {
+                currentStep--;
+                updateProgress();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function validateStep() {
+            const currentStepElement = document.querySelector('.active-step');
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+
+            for(let field of requiredFields) {
+                if(!field.value.trim()) {
+                    field.focus();
+                    field.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    return false;
+                }
+            }
+
+            // Check if at least one social media platform has followers >= 5000
+            if(currentStep === 2) {
+                const followerFields = [
+                    'instagram_followers_full_number',
+                    'facebook_followers_full_number',
+                    'youtube_subscribers_full_number',
+                    'tiktok_followers_full_number'
+                ];
+
+                const hasMinFollowers = followerFields.some(fieldName => {
+                    const field = document.querySelector(`[name="${fieldName}"]`);
+                    return field && parseInt(field.value || 0) >= 5000;
+                });
+
+                if(!hasMinFollowers) {
+                    alert('You need at least 5,000 followers on at least one social media platform to qualify.');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        async function submitForm() {
+            const isDevelopment = window.location.hostname === '127.0.0.1';
+            const apiUrl = isDevelopment
+                ? 'http://localhost:3000/proxy'
+                : '/proxy';
+
+                const formData = {
+                web_form: "brandsitter",
+                data: JSON.stringify({
+                    doctype: "brandsitter",
+                    first_name: document.querySelector('[name="first_name"]').value,
+                    last_name: document.querySelector('[name="last_name"]').value,
+                    english: document.querySelector('[name="english"]').checked ? "1" : "0",
+                    sinhala: document.querySelector('[name="sinhala"]').checked ? "1" : "0",
+                    tamil: document.querySelector('[name="tamil"]').checked ? "1" : "0",
+                    phone: document.querySelector('[name="phone"]').value,
+                    email: document.querySelector('[name="email"]').value,
+                    gender: document.querySelector('[name="gender"]').value,
+                    instagram_id: document.querySelector('[name="instagram_id"]').value,
+                    facebook_id: document.querySelector('[name="facebook_id"]').value,
+                    youtube_id: document.querySelector('[name="youtube_id"]').value,
+                    tiktok_id: document.querySelector('[name="tiktok_id"]').value,
+                    with_face: document.querySelector('[name="with_face"]').checked ? "1" : "0",
+                    instagram_followers_full_number: document.querySelector('[name="instagram_followers_full_number"]').value,
+                    facebook_followers_full_number: document.querySelector('[name="facebook_followers_full_number"]').value,
+                    youtube_subscribers_full_number: document.querySelector('[name="youtube_subscribers_full_number"]').value,
+                    tiktok_followers_full_number: document.querySelector('[name="tiktok_followers_full_number"]').value,
+                    are_you_interested_in_becoming_a_affiliate_marketing_influencer: document.querySelector('[name="are_you_interested_in_becoming_a_affiliate_marketing_influencer"]').value
+                }),
+                ...(isDevelopment && {
+                    'X-Proxy-Authorization': 'token 67053b972869781:858b3178b556192'
+                })
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    window.location.href = '/success.html?' + new URLSearchParams({
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET'
+                    });
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(`Submission failed: ${response.status} - ${errorText}`);
+                }
+            } catch (error) {
+                console.error('Submission Error:', error);
+                showErrorAlert();
+                if (typeof cloudflare !== 'undefined') {
+                    cloudflare.analytics.track('PartnerApplicationError', { error: error.message });
+                }
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu on navigation
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+    </script>
+</body>
+</html>
