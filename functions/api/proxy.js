@@ -19,13 +19,21 @@ export async function onRequestPost(context) {
         const body = await request.json();
         console.log('Received body:', JSON.stringify(body));
 
+        // Convert to form data format expected by Frappe
+        const formData = new URLSearchParams();
+        formData.append('web_form', body.web_form);
+        formData.append('data', body.data);
+        formData.append('cmd', 'frappe.website.doctype.web_form.web_form.accept');
+
+        console.log('Sending form data:', formData.toString());
+
         const frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `token ${context.env.FRAPPE_API_TOKEN || '67053b972869781:858b3178b556192'}`
             },
-            body: JSON.stringify(body)
+            body: formData
         });
 
         console.log('Frappe response status:', frappeResponse.status);
