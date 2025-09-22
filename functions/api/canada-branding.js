@@ -47,19 +47,87 @@ export async function onRequestPost(context) {
 
         console.log('Submitting to Frappe:', JSON.stringify(canadaBrandingDoc, null, 2));
 
-        // Submit directly to Frappe Canada Branding doctype
-        const frappeResponse = await fetch('https://ravanaindustries.com/api/resource/Canada%20Branding', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `token ${context.env.FRAPPE_API_TOKEN || '67053b972869781:858b3178b556192'}`
-            },
-            body: JSON.stringify(canadaBrandingDoc)
-        });
+        // Try multiple API methods until one works
+        const apiToken = context.env.FRAPPE_API_TOKEN || '67053b972869781:858b3178b556192';
+        let frappeResponse;
+        let responseText;
 
-        console.log('Frappe response status:', frappeResponse.status);
-        const responseText = await frappeResponse.text();
-        console.log('Frappe response:', responseText);
+        // Method 1: Document creation API
+        try {
+            console.log('Trying Method 1: Document creation API');
+            frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.desk.form.save.savedocs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `token ${apiToken}`
+                },
+                body: JSON.stringify({
+                    docs: JSON.stringify([canadaBrandingDoc])
+                })
+            });
+
+            responseText = await frappeResponse.text();
+            console.log('Method 1 response:', frappeResponse.status, responseText);
+
+            if (frappeResponse.ok) {
+                console.log('✅ Method 1 succeeded');
+            } else {
+                throw new Error(`Method 1 failed: ${frappeResponse.status}`);
+            }
+        } catch (error1) {
+            console.log('Method 1 failed, trying Method 2:', error1.message);
+
+            // Method 2: Direct API call to create document
+            try {
+                console.log('Trying Method 2: Direct document API');
+                frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.client.insert', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `token ${apiToken}`
+                    },
+                    body: JSON.stringify({
+                        doc: JSON.stringify(canadaBrandingDoc)
+                    })
+                });
+
+                responseText = await frappeResponse.text();
+                console.log('Method 2 response:', frappeResponse.status, responseText);
+
+                if (frappeResponse.ok) {
+                    console.log('✅ Method 2 succeeded');
+                } else {
+                    throw new Error(`Method 2 failed: ${frappeResponse.status}`);
+                }
+            } catch (error2) {
+                console.log('Method 2 failed, trying Method 3:', error2.message);
+
+                // Method 3: Simple resource endpoint (URL encoded spaces)
+                try {
+                    console.log('Trying Method 3: Resource endpoint');
+                    frappeResponse = await fetch('https://ravanaindustries.com/api/resource/Canada%20Branding', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `token ${apiToken}`
+                        },
+                        body: JSON.stringify(canadaBrandingDoc)
+                    });
+
+                    responseText = await frappeResponse.text();
+                    console.log('Method 3 response:', frappeResponse.status, responseText);
+
+                    if (!frappeResponse.ok) {
+                        throw new Error(`Method 3 failed: ${frappeResponse.status}`);
+                    }
+                    console.log('✅ Method 3 succeeded');
+                } catch (error3) {
+                    console.log('❌ All methods failed');
+                    frappeResponse = { ok: false, status: 500 };
+                    responseText = 'All API methods failed';
+                }
+            }
+        }
 
         if (frappeResponse.ok) {
             // Success - return success response
