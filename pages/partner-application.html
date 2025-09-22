@@ -506,33 +506,41 @@
         }
 
         async function submitForm() {
+            // Collect form data directly - no wrapper needed
             const formData = {
-                web_form: "brandsitter",
-                data: JSON.stringify({
-                    doctype: "brandsitter",
-                    first_name: document.querySelector('[name="first_name"]').value,
-                    last_name: document.querySelector('[name="last_name"]').value,
-                    english: document.querySelector('[name="english"]').checked ? "1" : "0",
-                    sinhala: document.querySelector('[name="sinhala"]').checked ? "1" : "0",
-                    tamil: document.querySelector('[name="tamil"]').checked ? "1" : "0",
-                    phone: document.querySelector('[name="phone"]').value,
-                    email: document.querySelector('[name="email"]').value,
-                    gender: document.querySelector('[name="gender"]').value,
-                    instagram_id: document.querySelector('[name="instagram_id"]').value,
-                    facebook_id: document.querySelector('[name="facebook_id"]').value,
-                    youtube_id: document.querySelector('[name="youtube_id"]').value,
-                    tiktok_id: document.querySelector('[name="tiktok_id"]').value,
-                    with_face: document.querySelector('[name="with_face"]').checked ? "1" : "0",
-                    instagram_followers_full_number: document.querySelector('[name="instagram_followers_full_number"]').value,
-                    facebook_followers_full_number: document.querySelector('[name="facebook_followers_full_number"]').value,
-                    youtube_subscribers_full_number: document.querySelector('[name="youtube_subscribers_full_number"]').value,
-                    tiktok_followers_full_number: document.querySelector('[name="tiktok_followers_full_number"]').value,
-                    are_you_interested_in_becoming_a_affiliate_marketing_influencer: document.querySelector('[name="are_you_interested_in_becoming_a_affiliate_marketing_influencer"]').value
-                })
+                // Personal Information
+                first_name: document.querySelector('[name="first_name"]').value,
+                last_name: document.querySelector('[name="last_name"]').value,
+                phone: document.querySelector('[name="phone"]').value,
+                email: document.querySelector('[name="email"]').value,
+                gender: document.querySelector('[name="gender"]').value,
+
+                // Languages
+                english: document.querySelector('[name="english"]').checked,
+                sinhala: document.querySelector('[name="sinhala"]').checked,
+                tamil: document.querySelector('[name="tamil"]').checked,
+
+                // Social Media Information
+                instagram_id: document.querySelector('[name="instagram_id"]').value,
+                facebook_id: document.querySelector('[name="facebook_id"]').value,
+                youtube_id: document.querySelector('[name="youtube_id"]').value,
+                tiktok_id: document.querySelector('[name="tiktok_id"]').value,
+
+                // Content style
+                with_face: document.querySelector('[name="with_face"]').checked,
+
+                // Follower counts
+                instagram_followers_full_number: document.querySelector('[name="instagram_followers_full_number"]').value,
+                facebook_followers_full_number: document.querySelector('[name="facebook_followers_full_number"]').value,
+                youtube_subscribers_full_number: document.querySelector('[name="youtube_subscribers_full_number"]').value,
+                tiktok_followers_full_number: document.querySelector('[name="tiktok_followers_full_number"]').value,
+
+                // Interest
+                are_you_interested_in_becoming_a_affiliate_marketing_influencer: document.querySelector('[name="are_you_interested_in_becoming_a_affiliate_marketing_influencer"]').value
             };
 
             try {
-                const response = await fetch('/api/submit', {
+                const response = await fetch('/api/partner-application', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
