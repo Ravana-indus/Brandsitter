@@ -47,9 +47,11 @@ export async function onRequestPost(context) {
 
         console.log('Submitting to Frappe:', JSON.stringify(canadaBrandingDoc, null, 2));
 
-        // Use correct Frappe URL and token
-        const apiToken = context.env.FRAPPE_API_TOKEN || 'a1beccfcdaf3ce2:ae22b9f04499f6f';
+        // Use correct Frappe URL and token from environment
+        const apiToken = context.env.FRAPPE_API_TOKEN;
         const frappeBaseUrl = 'https://erp.ravanaindustries.com';
+
+        console.log('Using API token from environment:', apiToken ? 'Found' : 'Not found');
 
         console.log('Submitting to correct Frappe instance...');
 
