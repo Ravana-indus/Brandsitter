@@ -54,31 +54,55 @@ export async function onRequestPost(context) {
             });
         }
 
-        // Try to parse JSON response
+        // Handle Frappe response
         const responseText = await frappeResponse.text();
         console.log('Frappe response text:', responseText);
+        console.log('Response length:', responseText.length);
 
-        let data;
-        try {
-            data = responseText ? JSON.parse(responseText) : { message: 'Success' };
-        } catch (parseError) {
-            console.log('JSON parse error:', parseError.message);
-            data = {
-                message: 'Success',
-                raw_response: responseText,
-                note: 'Response was not valid JSON but request succeeded'
+        // Frappe webform submissions often return empty or minimal responses on success
+        if (frappeResponse.status === 200) {
+            // Successful submission - return standardized success response
+            const successData = {
+                message: 'Form submitted successfully',
+                status: 'success',
+                frappe_status: frappeResponse.status,
+                raw_response: responseText || 'empty'
             };
-        }
 
-        return new Response(JSON.stringify(data), {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': origin,
-                'Access-Control-Allow-Credentials': 'true',
-                'Vary': 'Origin'
+            // Try to parse if there's actual content
+            if (responseText && responseText.trim().length > 0) {
+                try {
+                    const parsed = JSON.parse(responseText);
+                    successData.frappe_data = parsed;
+                } catch (parseError) {
+                    console.log('JSON parse note:', parseError.message);
+                    successData.note = 'Frappe returned non-JSON response but submission was successful';
+                }
             }
-        });
+
+            return new Response(JSON.stringify(successData), {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': origin,
+                    'Access-Control-Allow-Credentials': 'true',
+                    'Vary': 'Origin'
+                }
+            });
+        } else {
+            // Non-200 response - treat as error
+            return new Response(JSON.stringify({
+                error: `Frappe submission failed`,
+                status: frappeResponse.status,
+                response: responseText
+            }), {
+                status: frappeResponse.status,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': origin,
+                }
+            });
+        }
 
     } catch (error) {
         console.log('Function error:', error.message, error.stack);
