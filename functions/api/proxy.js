@@ -19,22 +19,23 @@ export async function onRequestPost(context) {
         const body = await request.json();
         console.log('Received body:', JSON.stringify(body));
 
-        // Convert to form data format expected by Frappe
-        const formData = new URLSearchParams();
-        formData.append('web_form', body.web_form);
-        formData.append('data', body.data);
-        formData.append('cmd', 'frappe.website.doctype.web_form.web_form.accept');
+        // Try multiple approaches to submit to Frappe
+        console.log('Trying direct document creation approach...');
 
-        console.log('Sending form data:', formData.toString());
+        // Parse the data from the request
+        const parsedData = JSON.parse(body.data);
 
-        const frappeResponse = await fetch('https://ravanaindustries.com/api/method/frappe.website.doctype.web_form.web_form.accept', {
+        // Try direct document creation API
+        const frappeResponse = await fetch('https://ravanaindustries.com/api/resource/' + parsedData.doctype, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
                 'Authorization': `token ${context.env.FRAPPE_API_TOKEN || '67053b972869781:858b3178b556192'}`
             },
-            body: formData
+            body: JSON.stringify(parsedData)
         });
+
+        console.log('Direct API response status:', frappeResponse.status);
 
         console.log('Frappe response status:', frappeResponse.status);
         console.log('Frappe response headers:', Object.fromEntries(frappeResponse.headers));
