@@ -509,7 +509,7 @@
             const isDevelopment = window.location.hostname === '127.0.0.1';
             const apiUrl = isDevelopment
                 ? 'http://localhost:3000/proxy'
-                : '/proxy';
+                : '/.netlify/functions/api';
 
                 const formData = {
                 web_form: "brandsitter",
