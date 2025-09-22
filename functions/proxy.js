@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `token ${context.env.FRAPPE_API_TOKEN}`
+                'Authorization': `token ${context.env.FRAPPE_API_TOKEN || '67053b972869781:858b3178b556192'}`
             },
             body: JSON.stringify(body)
         });
